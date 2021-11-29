@@ -105,7 +105,7 @@ function moverPeca(event) {
 //Chama funcoes no carregamento
 
 capturarClique()
-
+//Cria os botões de dificuldade e os mostra na tela
 function cirarBotoesDificulade() {
     const corpo = document.getElementsByTagName('body')[0]
     const divBotoes = document.createElement('div')
@@ -126,7 +126,7 @@ function cirarBotoesDificulade() {
     corpo.appendChild(divBotoes)
     escolherDificuldade()
 }
-
+//Faz com que os botões definam qual dificuldade foi selecionada
 function escolherDificuldade() {
     const botaoFacil = document.getElementById('botaoFacil')
     const botaoMedio = document.getElementById('botaoMedio')
@@ -134,11 +134,9 @@ function escolherDificuldade() {
     botaoFacil.addEventListener('click', definirDificuldade)
     botaoMedio.addEventListener('click', definirDificuldade)
     botaoDificil.addEventListener('click', definirDificuldade)
-
 }
-
+//Aplica a dificuldade ao jogo após ter sido selecionada na função anterior.
 function definirDificuldade(event) {
-    console.log(event.target)
     if (event.target.id === 'botaoFacil') {
         iniciarTorre(3)
     } else if (event.target.id === 'botaoMedio') {
@@ -147,5 +145,22 @@ function definirDificuldade(event) {
         iniciarTorre(5)
     }
     document.getElementById('divBotoes').remove()
+    criarBotaoReset()
 }
-
+// Cria o botao reset
+function criarBotaoReset() {
+    const corpo = document.getElementsByTagName('body')[0]
+    const divReset = document.createElement('div')
+    const botaoReset = document.createElement('button')
+    botaoReset.id = 'botaoReset'
+    botaoReset.innerText = 'Recomeçar'
+    corpo.appendChild(divReset)
+    divReset.appendChild(botaoReset)
+    botaoReset.addEventListener('click', resetarJogo)
+}
+// faz com que o botão reset acabe o jogo atual e volte para a seleção de dificuldade
+function resetarJogo() {
+    const corpo = document.getElementsByTagName('body')[0]
+    corpo.innerHTML = ''
+    cirarBotoesDificulade()
+}
