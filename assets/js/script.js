@@ -43,13 +43,13 @@ function capturarClique() {
 
 //Armazena pecas e barras
 let pecaEscolhida = ''
-let barraPeca = ''
+let barraDaPeca = ''
 let barraParaColocar = ''
 
 //Zera as variaveis globais
 function zerarVariaveisGlobais() {
     pecaEscolhida = ''
-    barraPeca = ''
+    barraDaPeca = ''
     barraParaColocar = ''
 }
 
@@ -61,12 +61,16 @@ function armazenaPecasEBarras(event) {
     //Verifica se clicou em uma peca
     if (peca.tagName === 'LI') {
 
-        //Armazena a primeira peca e barra
-        if (pecaEscolhida === '') {
-            pecaEscolhida = peca
-            barraPeca = barra
-            return false
+        //Verifica se é a peca de cima
+        if (verficarPecaDeCima(event)) {
+            //Armazena a primeira peca e barra
+            if (pecaEscolhida === '') {
+                pecaEscolhida = peca
+                barraDaPeca = barra
+                return false
+            }
         }
+
 
     } else if (pecaEscolhida.tagName === 'LI') {
 
@@ -76,22 +80,33 @@ function armazenaPecasEBarras(event) {
     }
 }
 
+//Verificar se é a peça de cima
+function verficarPecaDeCima(event) {
+    const barraAtual = event.target.parentNode
+    const pecas = barraAtual.getElementsByTagName('li')
+    const primeiraPeca = pecas[pecas.length - 1]
+
+    if (event.target === primeiraPeca) {
+        return true
+    }
+    return false
+}
+
 //Mover Pecas
 function moverPeca(event) {
-    //Roda a funcao
+    //Verifica se esta armazenado a peca e qual barra ela vai
     if (armazenaPecasEBarras(event)) {
 
-        if (barraParaColocar !== barraPeca) {
+        if (barraParaColocar !== barraDaPeca) {
 
             const pecasDaBarraColocar = barraParaColocar.getElementsByTagName('li')
             let ultimaPecaBarraColocar = pecasDaBarraColocar[pecasDaBarraColocar.length - 1]
-            ultimaPecaBarraColocar === undefined ? ultimaPecaBarraColocar = {id: 'vazio'} : ultimaPecaBarraColocar
-            console.log(parseInt(pecaEscolhida.id.slice(-1)))
-            console.log(parseInt(ultimaPecaBarraColocar.id.slice(-1)))
+            ultimaPecaBarraColocar === undefined ? ultimaPecaBarraColocar = { id: 'vazio' } : ultimaPecaBarraColocar
 
             if (parseInt(pecaEscolhida.id.slice(-1)) < parseInt(ultimaPecaBarraColocar.id.slice(-1)) || ultimaPecaBarraColocar.id === 'vazio') {
                 pecaEscolhida.remove()
                 barraParaColocar.appendChild(pecaEscolhida)
+                verificaVitoria()
             }
 
             zerarVariaveisGlobais()
@@ -101,6 +116,25 @@ function moverPeca(event) {
         }
 
     }
+}
+
+//Verificar vitoria
+function verificaVitoria(){
+    const barra3 = document.getElementById('barra3')
+    const pecas = barra3.getElementsByTagName('li')
+
+    if(pecas.length === 4){
+        for(let i = 0; i < pecas.length; i++){
+            if(parseInt(pecas[i].id.slice(-1)) === 4 - i){
+                
+            }
+            else{
+                return false
+            }
+        }
+        console.log('vitoria')
+    }
+    
 }
 
 //Chama funcoes no carregamento

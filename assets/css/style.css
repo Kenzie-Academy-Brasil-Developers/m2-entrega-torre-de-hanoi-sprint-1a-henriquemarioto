@@ -68,3 +68,7 @@ body {
     border: 2px black solid;
     border-radius: var(--border-radius);
 }
+
+#peca1:hover, #peca2:hover, #peca3:hover, #peca4:hover, #peca5:hover{
+    cursor: pointer;
+}
