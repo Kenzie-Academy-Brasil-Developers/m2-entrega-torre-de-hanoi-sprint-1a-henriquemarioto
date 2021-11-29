@@ -122,9 +122,9 @@ function verificaVitoria(){
     const barra3 = document.getElementById('barra3')
     const pecas = barra3.getElementsByTagName('li')
 
-    if(pecas.length === 4){
+    if(pecas.length === numPecas){
         for(let i = 0; i < pecas.length; i++){
-            if(parseInt(pecas[i].id.slice(-1)) === 4 - i){
+            if(parseInt(pecas[i].id.slice(-1)) === numPecas - i){
                 
             }
             else{
@@ -136,10 +136,7 @@ function verificaVitoria(){
     
 }
 
-//Chama funcoes no carregamento
-
-capturarClique()
-
+//Cria os botes para escolher dificuldade
 function cirarBotoesDificulade() {
     const corpo = document.getElementsByTagName('body')[0]
     const divBotoes = document.createElement('div')
@@ -158,10 +155,11 @@ function cirarBotoesDificulade() {
     divBotoes.appendChild(botaoMedio)
     divBotoes.appendChild(botaoDificil)
     corpo.appendChild(divBotoes)
-    escolherDificuldade()
+    adicionarEventosBotesDificuldade()
 }
 
-function escolherDificuldade() {
+//Adiciona evento aos botes de escolher dificuldade
+function adicionarEventosBotesDificuldade() {
     const botaoFacil = document.getElementById('botaoFacil')
     const botaoMedio = document.getElementById('botaoMedio')
     const botaoDificil = document.getElementById('botaoDificil')
@@ -171,15 +169,20 @@ function escolherDificuldade() {
 
 }
 
+//Defini o valor de pecas pela dificuldade
+let numPecas = 0
 function definirDificuldade(event) {
-    console.log(event.target)
     if (event.target.id === 'botaoFacil') {
-        iniciarTorre(3)
+        numPecas = 3
     } else if (event.target.id === 'botaoMedio') {
-        iniciarTorre(4)
+        numPecas = 4
     } else if (event.target.id === 'botaoDificil') {
-        iniciarTorre(5)
+        numPecas = 5
     }
+    iniciarTorre(numPecas)
+    capturarClique()
     document.getElementById('divBotoes').remove()
 }
 
+//Funcoes ativadas no carregamento da pagina
+cirarBotoesDificulade()
