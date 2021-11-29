@@ -34,3 +34,18 @@ function IniciarTorre(){
 }
 
 IniciarTorre()
+//função que captura o clique de cada barra
+function capturarClique() {
+    const getBarra1 = document.getElementById('barra1')
+    const getBarra2 = document.getElementById('barra2')
+    const getBarra3 = document.getElementById('barra3')
+
+    getBarra1.addEventListener('click')
+    getBarra2.addEventListener('click')
+    getBarra3.addEventListener('click')
+    
+}
+
+function verificarVitoria() {
+
+}
