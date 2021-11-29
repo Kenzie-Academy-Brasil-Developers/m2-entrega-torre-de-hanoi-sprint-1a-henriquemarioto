@@ -43,13 +43,13 @@ function capturarClique() {
 
 //Armazena pecas e barras
 let pecaEscolhida = ''
-let barraPeca = ''
+let barraDaPeca = ''
 let barraParaColocar = ''
 
 //Zera as variaveis globais
 function zerarVariaveisGlobais() {
     pecaEscolhida = ''
-    barraPeca = ''
+    barraDaPeca = ''
     barraParaColocar = ''
 }
 
@@ -61,12 +61,16 @@ function armazenaPecasEBarras(event) {
     //Verifica se clicou em uma peca
     if (peca.tagName === 'LI') {
 
-        //Armazena a primeira peca e barra
-        if (pecaEscolhida === '') {
-            pecaEscolhida = peca
-            barraPeca = barra
-            return false
+        //Verifica se é a peca de cima
+        if (verficarPecaDeCima(event)) {
+            //Armazena a primeira peca e barra
+            if (pecaEscolhida === '') {
+                pecaEscolhida = peca
+                barraDaPeca = barra
+                return false
+            }
         }
+
 
     } else if (pecaEscolhida.tagName === 'LI') {
 
@@ -76,22 +80,33 @@ function armazenaPecasEBarras(event) {
     }
 }
 
+//Verificar se é a peça de cima
+function verficarPecaDeCima(event) {
+    const barraAtual = event.target.parentNode
+    const pecas = barraAtual.getElementsByTagName('li')
+    const primeiraPeca = pecas[pecas.length - 1]
+
+    if (event.target === primeiraPeca) {
+        return true
+    }
+    return false
+}
+
 //Mover Pecas
 function moverPeca(event) {
-    //Roda a funcao
+    //Verifica se esta armazenado a peca e qual barra ela vai
     if (armazenaPecasEBarras(event)) {
 
-        if (barraParaColocar !== barraPeca) {
+        if (barraParaColocar !== barraDaPeca) {
 
             const pecasDaBarraColocar = barraParaColocar.getElementsByTagName('li')
             let ultimaPecaBarraColocar = pecasDaBarraColocar[pecasDaBarraColocar.length - 1]
-            ultimaPecaBarraColocar === undefined ? ultimaPecaBarraColocar = {id: 'vazio'} : ultimaPecaBarraColocar
-            console.log(parseInt(pecaEscolhida.id.slice(-1)))
-            console.log(parseInt(ultimaPecaBarraColocar.id.slice(-1)))
+            ultimaPecaBarraColocar === undefined ? ultimaPecaBarraColocar = { id: 'vazio' } : ultimaPecaBarraColocar
 
             if (parseInt(pecaEscolhida.id.slice(-1)) < parseInt(ultimaPecaBarraColocar.id.slice(-1)) || ultimaPecaBarraColocar.id === 'vazio') {
                 pecaEscolhida.remove()
                 barraParaColocar.appendChild(pecaEscolhida)
+                verificaVitoria()
             }
 
             zerarVariaveisGlobais()
@@ -102,10 +117,26 @@ function moverPeca(event) {
     }
 }
 
-//Chama funcoes no carregamento
+//Verificar vitoria
+function verificaVitoria(){
+    const barra3 = document.getElementById('barra3')
+    const pecas = barra3.getElementsByTagName('li')
 
-capturarClique()
-//Cria os botões de dificuldade e os mostra na tela
+    if(pecas.length === numPecas){
+        for(let i = 0; i < pecas.length; i++){
+            if(parseInt(pecas[i].id.slice(-1)) === numPecas - i){
+                
+            }
+            else{
+                return false
+            }
+        }
+        console.log('vitoria')
+    }
+    
+}
+
+//Cria os botes para escolher dificuldade
 function cirarBotoesDificulade() {
     const corpo = document.getElementsByTagName('body')[0]
     const divBotoes = document.createElement('div')
@@ -124,10 +155,11 @@ function cirarBotoesDificulade() {
     divBotoes.appendChild(botaoMedio)
     divBotoes.appendChild(botaoDificil)
     corpo.appendChild(divBotoes)
-    escolherDificuldade()
+    adicionarEventosBotesDificuldade()
 }
-//Faz com que os botões definam qual dificuldade foi selecionada
-function escolherDificuldade() {
+
+//Adiciona evento aos botes de escolher dificuldade
+function adicionarEventosBotesDificuldade() {
     const botaoFacil = document.getElementById('botaoFacil')
     const botaoMedio = document.getElementById('botaoMedio')
     const botaoDificil = document.getElementById('botaoDificil')
@@ -135,15 +167,19 @@ function escolherDificuldade() {
     botaoMedio.addEventListener('click', definirDificuldade)
     botaoDificil.addEventListener('click', definirDificuldade)
 }
-//Aplica a dificuldade ao jogo após ter sido selecionada na função anterior.
+
+//Defini o valor de pecas pela dificuldade
+let numPecas = 0
 function definirDificuldade(event) {
     if (event.target.id === 'botaoFacil') {
-        iniciarTorre(3)
+        numPecas = 3
     } else if (event.target.id === 'botaoMedio') {
-        iniciarTorre(4)
+        numPecas = 4
     } else if (event.target.id === 'botaoDificil') {
-        iniciarTorre(5)
+        numPecas = 5
     }
+    iniciarTorre(numPecas)
+    capturarClique()
     document.getElementById('divBotoes').remove()
     criarBotaoReset()
 }
