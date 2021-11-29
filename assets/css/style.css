@@ -1,0 +1,47 @@
+body {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+#barra1,
+#barra2,
+#barra3 {
+    width: 5px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: black;
+    border: 2px black solid;
+}
+
+#peca1 {
+    width: 15px;
+    height: 10px;
+    background-color: #4576B5;
+    border: 2px black solid;
+
+}
+
+#peca2 {
+    width: 20px;
+    height: 10px;
+    background-color: #755998;
+    border: 2px black solid;
+
+}
+
+#peca3 {
+    width: 25px;
+    height: 10px;
+    background-color: #91b24f;
+    border: 2px black solid;
+
+}
+
+#peca4 {
+    width: 30px;
+    height: 10px;
+    background-color: #b84644;
+    border: 2px black solid;
+
+}
