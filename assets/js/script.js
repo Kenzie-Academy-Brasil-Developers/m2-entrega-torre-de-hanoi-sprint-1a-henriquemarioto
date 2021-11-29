@@ -114,7 +114,6 @@ function moverPeca(event) {
         } else {
             zerarVariaveisGlobais()
         }
-
     }
 }
 
@@ -138,5 +137,49 @@ function verificaVitoria(){
 }
 
 //Chama funcoes no carregamento
-iniciarTorre(4)
+
 capturarClique()
+
+function cirarBotoesDificulade() {
+    const corpo = document.getElementsByTagName('body')[0]
+    const divBotoes = document.createElement('div')
+    divBotoes.id = 'divBotoes'
+    const botaoFacil = document.createElement('button')
+    botaoFacil.id = 'botaoFacil'
+    botaoFacil.innerText = 'Fácil'
+    const botaoMedio = document.createElement('button')
+    botaoMedio.id = 'botaoMedio'
+    botaoMedio.innerText = 'Médio'
+    const botaoDificil = document.createElement('button')
+    botaoDificil.id = 'botaoDificil'
+    botaoDificil.innerText = 'Difícil'
+
+    divBotoes.appendChild(botaoFacil)
+    divBotoes.appendChild(botaoMedio)
+    divBotoes.appendChild(botaoDificil)
+    corpo.appendChild(divBotoes)
+    escolherDificuldade()
+}
+
+function escolherDificuldade() {
+    const botaoFacil = document.getElementById('botaoFacil')
+    const botaoMedio = document.getElementById('botaoMedio')
+    const botaoDificil = document.getElementById('botaoDificil')
+    botaoFacil.addEventListener('click', definirDificuldade)
+    botaoMedio.addEventListener('click', definirDificuldade)
+    botaoDificil.addEventListener('click', definirDificuldade)
+
+}
+
+function definirDificuldade(event) {
+    console.log(event.target)
+    if (event.target.id === 'botaoFacil') {
+        iniciarTorre(3)
+    } else if (event.target.id === 'botaoMedio') {
+        iniciarTorre(4)
+    } else if (event.target.id === 'botaoDificil') {
+        iniciarTorre(5)
+    }
+    document.getElementById('divBotoes').remove()
+}
+
