@@ -8,7 +8,7 @@ body {
     background-color: #ddd;
 }
 
-:root{
+:root {
     --border-radius: 5px;
     --peca-height: 20px;
 }
@@ -30,15 +30,15 @@ body {
 }
 
 #peca1 {
-    width: 20px;
+    width: 25px;
     height: var(--peca-height);
-    background-color: #4576B5;
+    background-color: #4576b5;
     border: 2px black solid;
     border-radius: var(--border-radius);
 }
 
 #peca2 {
-    width: 30px;
+    width: 38px;
     height: var(--peca-height);
     background-color: #755998;
     border: 2px black solid;
@@ -46,7 +46,7 @@ body {
 }
 
 #peca3 {
-    width: 40px;
+    width: 52px;
     height: var(--peca-height);
     background-color: #91b24f;
     border: 2px black solid;
@@ -54,7 +54,7 @@ body {
 }
 
 #peca4 {
-    width: 50px;
+    width: 65px;
     height: var(--peca-height);
     background-color: #b84644;
     border: 2px black solid;
