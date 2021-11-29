@@ -1,3 +1,4 @@
+//Cria elementos
 function criarElemento(name) {
     return document.createElement(name)
 }
@@ -82,9 +83,8 @@ function armazenaPecasEBarras(event) {
 
 //Verificar se é a peça de cima
 function verficarPecaDeCima(event) {
-    const barraAtual = event.target.parentNode
-    const pecas = barraAtual.getElementsByTagName('li')
-    const primeiraPeca = pecas[pecas.length - 1]
+    const barraAtual = event.currentTarget
+    const primeiraPeca = barraAtual.lastChild
 
     if (event.target === primeiraPeca) {
         return true
@@ -104,9 +104,9 @@ function moverPeca(event) {
             ultimaPecaBarraColocar === undefined ? ultimaPecaBarraColocar = { id: 'vazio' } : ultimaPecaBarraColocar
 
             if (parseInt(pecaEscolhida.id.slice(-1)) < parseInt(ultimaPecaBarraColocar.id.slice(-1)) || ultimaPecaBarraColocar.id === 'vazio') {
-                pecaEscolhida.remove()
                 barraParaColocar.appendChild(pecaEscolhida)
-                verificaVitoria()
+                contarMovimentos()
+                verificaVitoria(event.currentTarget)
             }
 
             zerarVariaveisGlobais()
@@ -118,33 +118,35 @@ function moverPeca(event) {
 }
 
 //Verificar vitoria
-function verificaVitoria(){
-    const barra3 = document.getElementById('barra3')
-    const pecas = barra3.getElementsByTagName('li')
+function verificaVitoria(barra) {
+    if (barra.id.slice(-1) !== '1') {
+        const pecas = barra.childElementCount
+        
+        //Verifica se o numero de pecas na ultima barra é o mesmo do numero de pecas total
+        if (pecas === numPecas) {
+            for (let i = 0; i < pecas.length; i++) {
+                //Verifica se elas estão na ordem certa
+                if (parseInt(pecas[i].id.slice(-1)) === numPecas - i) {
 
-    if(pecas.length === numPecas){
-        for(let i = 0; i < pecas.length; i++){
-            if(parseInt(pecas[i].id.slice(-1)) === numPecas - i){
-                
+                }
+                else {
+                    return false
+                }
             }
-            else{
-                return false
-            }
+            console.log('vitoria')
         }
-        console.log('vitoria')
     }
-    
 }
 
 //Cria os botes para escolher dificuldade
 function cirarBotoesDificulade() {
     const corpo = document.getElementsByTagName('body')[0]
-    const divBotoes = document.createElement('div')
+    const divBotoes = criarElemento('div')
     divBotoes.id = 'divBotoes'
-    const botaoFacil = document.createElement('button')
+    const botaoFacil = criarElemento('button')
     botaoFacil.id = 'botaoFacil'
     botaoFacil.innerText = 'Fácil'
-    const botaoMedio = document.createElement('button')
+    const botaoMedio = criarElemento('button')
     botaoMedio.id = 'botaoMedio'
     botaoMedio.innerText = 'Médio'
     const botaoDificil = document.createElement('button')
@@ -182,6 +184,13 @@ function definirDificuldade(event) {
     iniciarTorre(numPecas)
     capturarClique()
     document.getElementById('divBotoes').remove()
+}
+
+//Contador de movimentos
+let movimentos = 0
+function contarMovimentos(){
+    movimentos++
+    
 }
 
 //Funcoes ativadas no carregamento da pagina
