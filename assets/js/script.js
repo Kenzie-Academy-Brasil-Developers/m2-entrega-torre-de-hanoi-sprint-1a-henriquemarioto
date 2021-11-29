@@ -48,10 +48,11 @@ let barraDaPeca = ''
 let barraParaColocar = ''
 
 //Zera as variaveis globais
-function zerarVariaveisGlobais() {
+function resetarVariaveisGlobais() {
     pecaEscolhida = ''
     barraDaPeca = ''
     barraParaColocar = ''
+    movimentos = 0
 }
 
 //Armazena nas variaveis globais as pecas e barras escolhidas
@@ -109,10 +110,10 @@ function moverPeca(event) {
                 verificaVitoria(event.currentTarget)
             }
 
-            zerarVariaveisGlobais()
+            resetarVariaveisGlobais()
 
         } else {
-            zerarVariaveisGlobais()
+            resetarVariaveisGlobais()
         }
     }
 }
@@ -168,7 +169,6 @@ function adicionarEventosBotesDificuldade() {
     botaoFacil.addEventListener('click', definirDificuldade)
     botaoMedio.addEventListener('click', definirDificuldade)
     botaoDificil.addEventListener('click', definirDificuldade)
-
 }
 
 //Defini o valor de pecas pela dificuldade
@@ -184,6 +184,25 @@ function definirDificuldade(event) {
     iniciarTorre(numPecas)
     capturarClique()
     document.getElementById('divBotoes').remove()
+    criarBotaoReset()
+}
+// Cria o botao reset
+function criarBotaoReset() {
+    const corpo = document.getElementsByTagName('body')[0]
+    const divReset = document.createElement('div')
+    const botaoReset = document.createElement('button')
+    botaoReset.id = 'botaoReset'
+    botaoReset.innerText = 'Recomeçar'
+    corpo.appendChild(divReset)
+    divReset.appendChild(botaoReset)
+    botaoReset.addEventListener('click', resetarJogo)
+}
+// faz com que o botão reset acabe o jogo atual e volte para a seleção de dificuldade
+function resetarJogo() {
+    const corpo = document.getElementsByTagName('body')[0]
+    corpo.innerHTML = ''
+    resetarVariaveisGlobais()
+    cirarBotoesDificulade()
 }
 
 //Contador de movimentos
