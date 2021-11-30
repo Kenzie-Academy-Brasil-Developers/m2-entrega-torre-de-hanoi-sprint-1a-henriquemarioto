@@ -1,16 +1,25 @@
 body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     width: 100vw;
     height: 100vh;
-
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
     background-color: #ddd;
 }
 
 :root {
     --border-radius: 5px;
     --peca-height: 20px;
+}
+
+#container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    width: 100%;
 }
 
 #barra1,

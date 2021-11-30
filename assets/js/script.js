@@ -1,3 +1,6 @@
+//body
+const body = document.getElementsByTagName('body')[0]
+
 //Cria elementos
 function criarElemento(name) {
     return document.createElement(name)
@@ -5,6 +8,10 @@ function criarElemento(name) {
 
 //Inicia as torres quando carrega a pagina
 function iniciarTorre(pecas) {
+    //Criar container
+    const container = criarElemento('div')
+    container.id = 'container'
+
     //Criar barras
     const barra1 = criarElemento('ul')
     const barra2 = criarElemento('ul')
@@ -20,10 +27,11 @@ function iniciarTorre(pecas) {
         barra1.appendChild(peca)
     }
 
-    const body = document.getElementsByTagName('body')[0]
-    body.appendChild(barra1)
-    body.appendChild(barra2)
-    body.appendChild(barra3)
+    container.appendChild(barra1)
+    container.appendChild(barra2)
+    container.appendChild(barra3)
+
+    body.appendChild(container)
 }
 
 
@@ -53,6 +61,13 @@ function resetarVariaveisGlobais() {
     barraDaPeca = ''
     barraParaColocar = ''
     movimentos = 0
+}
+
+//Zera variaveis de movimento
+function resetarVariaveisMovimento(){
+    pecaEscolhida = ''
+    barraDaPeca = ''
+    barraParaColocar = ''
 }
 
 //Armazena nas variaveis globais as pecas e barras escolhidas
@@ -110,10 +125,10 @@ function moverPeca(event) {
                 verificaVitoria(event.currentTarget)
             }
 
-            resetarVariaveisGlobais()
+            resetarVariaveisMovimento()
 
         } else {
-            resetarVariaveisGlobais()
+            resetarVariaveisMovimento()
         }
     }
 }
@@ -122,7 +137,7 @@ function moverPeca(event) {
 function verificaVitoria(barra) {
     if (barra.id.slice(-1) !== '1') {
         const pecas = barra.childElementCount
-        
+
         //Verifica se o numero de pecas na ultima barra é o mesmo do numero de pecas total
         if (pecas === numPecas) {
             for (let i = 0; i < pecas.length; i++) {
@@ -141,23 +156,24 @@ function verificaVitoria(barra) {
 
 //Cria os botes para escolher dificuldade
 function cirarBotoesDificulade() {
-    const corpo = document.getElementsByTagName('body')[0]
     const divBotoes = criarElemento('div')
-    divBotoes.id = 'divBotoes'
     const botaoFacil = criarElemento('button')
-    botaoFacil.id = 'botaoFacil'
-    botaoFacil.innerText = 'Fácil'
     const botaoMedio = criarElemento('button')
+    const botaoDificil = criarElemento('button')
+
+    divBotoes.id = 'divBotoes'
+    botaoFacil.id = 'botaoFacil'
     botaoMedio.id = 'botaoMedio'
-    botaoMedio.innerText = 'Médio'
-    const botaoDificil = document.createElement('button')
     botaoDificil.id = 'botaoDificil'
+
     botaoDificil.innerText = 'Difícil'
+    botaoMedio.innerText = 'Médio'
+    botaoFacil.innerText = 'Fácil'
 
     divBotoes.appendChild(botaoFacil)
     divBotoes.appendChild(botaoMedio)
     divBotoes.appendChild(botaoDificil)
-    corpo.appendChild(divBotoes)
+    body.appendChild(divBotoes)
     adicionarEventosBotesDificuldade()
 }
 
@@ -181,35 +197,55 @@ function definirDificuldade(event) {
     } else if (event.target.id === 'botaoDificil') {
         numPecas = 5
     }
-    iniciarTorre(numPecas)
-    capturarClique()
-    document.getElementById('divBotoes').remove()
-    criarBotaoReset()
+
+    iniciarJogo()
 }
+
 // Cria o botao reset
 function criarBotaoReset() {
-    const corpo = document.getElementsByTagName('body')[0]
     const divReset = document.createElement('div')
     const botaoReset = document.createElement('button')
+
     botaoReset.id = 'botaoReset'
     botaoReset.innerText = 'Recomeçar'
-    corpo.appendChild(divReset)
+    body.appendChild(divReset)
     divReset.appendChild(botaoReset)
     botaoReset.addEventListener('click', resetarJogo)
 }
 // faz com que o botão reset acabe o jogo atual e volte para a seleção de dificuldade
 function resetarJogo() {
-    const corpo = document.getElementsByTagName('body')[0]
-    corpo.innerHTML = ''
+    body.innerHTML = ''
     resetarVariaveisGlobais()
     cirarBotoesDificulade()
 }
 
 //Contador de movimentos
 let movimentos = 0
-function contarMovimentos(){
+function contarMovimentos() {
     movimentos++
-    
+    document.getElementById('contador').innerText = `movimentos: ${movimentos}`
+}
+
+//Criar contador de movimentos na tela
+function criarContadorDeMovimentos(){
+    const div = criarElemento('div')
+    const p = criarElemento('p')
+
+    p.innerText = `movimentos: ${movimentos}`
+    p.id = 'contador'
+
+    div.appendChild(p)
+    body.appendChild(div)
+}
+
+//Inicia o jogo
+function iniciarJogo(){
+    resetarVariaveisGlobais()
+    criarContadorDeMovimentos()
+    iniciarTorre(numPecas)
+    capturarClique()
+    document.getElementById('divBotoes').remove()
+    criarBotaoReset()
 }
 
 //Funcoes ativadas no carregamento da pagina
