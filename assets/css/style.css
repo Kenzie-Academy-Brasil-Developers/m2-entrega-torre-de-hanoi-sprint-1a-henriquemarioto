@@ -8,7 +8,7 @@ body {
 
     width: 100vw;
     height: 100vh;
-    background-color: #E6E8EA;
+    background-color: #e6e8ea;
     color: #333;
 }
 
@@ -17,32 +17,32 @@ body {
     --peca-height: 20px;
 }
 
-.container{
+.container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
     width: 300px;
-    background-color: #F3F3F5;
+    background-color: #f3f3f5;
     border-radius: 10px;
 
-    box-shadow: 0px 0px 9px 6px rgba(0,0,0,0.08);
+    box-shadow: 0px 0px 9px 6px rgba(0, 0, 0, 0.08);
 }
 
-#contador{
+#contador {
     padding: 20px;
 }
 
-#botaoReset{
+#botaoReset {
     box-sizing: border-box;
     border: 2px solid #999;
-    border-radius: 10px;;
+    border-radius: 10px;
     margin: 10px 0;
     padding: 10px;
 }
 
-.container-jogo{
+.container-jogo {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -65,14 +65,18 @@ body {
     cursor: pointer;
 }
 
-#peca1, #peca2, #peca3, #peca4, #peca5{
-    border: 2px solid rgba(0,0,0,0.1);
+#peca1,
+#peca2,
+#peca3,
+#peca4,
+#peca5 {
+    border: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 #peca1 {
     width: 23px;
     height: var(--peca-height);
-    background-color: #FF9696;
+    background-color: #ff9696;
     border-radius: var(--border-radius);
     box-sizing: border-box;
 }
@@ -80,28 +84,28 @@ body {
 #peca2 {
     width: 35px;
     height: var(--peca-height);
-    background-color: #FFC265;
+    background-color: #ffc265;
     border-radius: var(--border-radius);
 }
 
 #peca3 {
     width: 48px;
     height: var(--peca-height);
-    background-color: #EFFF65;
+    background-color: #efff65;
     border-radius: var(--border-radius);
 }
 
 #peca4 {
     width: 57px;
     height: var(--peca-height);
-    background-color: #65FFBD;
+    background-color: #65ffbd;
     border-radius: var(--border-radius);
 }
 
 #peca5 {
     width: 66px;
     height: var(--peca-height);
-    background-color: #7FF6FF;
+    background-color: #7ff6ff;
     border-radius: var(--border-radius);
 }
 
@@ -126,7 +130,7 @@ body {
     border: none;
     color: rgb(75, 75, 75);
     font-weight: bolder;
-    width: 90px;
+    width: 110px;
     height: 40px;
     border-radius: 7px;
     border: 2px rgb(75, 75, 75) solid;
@@ -135,17 +139,25 @@ body {
     margin: 10px 0;
 }
 
-#botaoReset:hover,
-#botaoFacil:hover,
-#botaoMedio:hover,
-#botaoDificil:hover {
-    border: 3px crimson solid;
-    color: crimson;
+#botaoFacil:hover {
+    border: 3px #65ffbd solid;
+    color: #65ffbd;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+#botaoMedio:hover {
+    border: 3px #cad655 solid;
+    color: #cad655;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 
 }
 
-#botaoReset{
-    margin: 10px 0;
+
+#botaoDificil:hover {
+    border: 3px #ff9696 solid;
+    color: #ff9696;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+
 }
 
 #divVitoria {
