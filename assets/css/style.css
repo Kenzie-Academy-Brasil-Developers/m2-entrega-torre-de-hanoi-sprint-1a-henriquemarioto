@@ -16,21 +16,21 @@ body {
 #barra1,
 #barra2,
 #barra3 {
-    width: 5px;
+    width: 7px;
     height: 200px;
     border-radius: 5px;
     background-color: black;
-    border: 2px black solid;
+    border: 3px black solid;
     box-sizing: border-box;
-
     display: flex;
     flex-direction: column-reverse;
     justify-content: flex-start;
     align-items: center;
+    cursor: pointer;
 }
 
 #peca1 {
-    width: 25px;
+    width: 23px;
     height: var(--peca-height);
     background-color: #4576b5;
     border: 2px black solid;
@@ -38,7 +38,7 @@ body {
 }
 
 #peca2 {
-    width: 38px;
+    width: 35px;
     height: var(--peca-height);
     background-color: #755998;
     border: 2px black solid;
@@ -46,7 +46,7 @@ body {
 }
 
 #peca3 {
-    width: 52px;
+    width: 48px;
     height: var(--peca-height);
     background-color: #91b24f;
     border: 2px black solid;
@@ -54,7 +54,7 @@ body {
 }
 
 #peca4 {
-    width: 65px;
+    width: 57px;
     height: var(--peca-height);
     background-color: #b84644;
     border: 2px black solid;
@@ -62,13 +62,50 @@ body {
 }
 
 #peca5 {
-    width: 60px;
+    width: 66px;
     height: var(--peca-height);
-    background-color: violet;
+    background-color: rgb(197, 120, 208);
     border: 2px black solid;
     border-radius: var(--border-radius);
 }
 
 #peca1:hover, #peca2:hover, #peca3:hover, #peca4:hover, #peca5:hover{
     cursor: pointer;
+}
+
+#divBotoes{
+    
+    
+}
+
+#botaoReset{
+
+}
+
+#divVitoria{
+    background-color: rgb(0, 0, 0, 0.5);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+}
+
+#alertaVitoria {
+    background-color: chocolate;
+    border: 4px darkgreen solid;
+    width: 300px;
+    height: 150px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#alertaTexto{
+    color:darkmagenta;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
 }
