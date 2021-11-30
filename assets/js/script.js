@@ -51,7 +51,7 @@ function capturarClique() {
 
 
 
-//Armazena pecas e barras
+//Variaveis globais pecas e barras
 let pecaEscolhida = ''
 let barraDaPeca = ''
 let barraParaColocar = ''
@@ -65,7 +65,8 @@ function resetarVariaveisGlobais() {
 }
 
 //Zera variaveis de movimento
-function resetarVariaveisMovimento(){
+function resetarVariaveisMovimento() {
+    pecaEscolhida.className = ''
     pecaEscolhida = ''
     barraDaPeca = ''
     barraParaColocar = ''
@@ -74,39 +75,22 @@ function resetarVariaveisMovimento(){
 //Armazena nas variaveis globais as pecas e barras escolhidas
 function armazenaPecasEBarras(event) {
     const barra = event.currentTarget
-    const peca = event.target
+    let peca = barra.lastElementChild
+    peca === null ? peca = '' : peca
 
     //Verifica se clicou em uma peca
-    if (peca.tagName === 'LI') {
 
-        //Verifica se é a peca de cima
-        if (verficarPecaDeCima(event)) {
-            //Armazena a primeira peca e barra
-            if (pecaEscolhida === '') {
-                pecaEscolhida = peca
-                barraDaPeca = barra
-                return false
-            }
-        }
-
-
-    } else if (pecaEscolhida.tagName === 'LI') {
-
-        barraParaColocar = barra
-        return true
-
+    //Armazena a primeira peca e barra
+    if (pecaEscolhida === '') {
+        pecaEscolhida = peca
+        pecaEscolhida.className = 'peca-selecionada'
+        barraDaPeca = barra
+        return false
     }
-}
 
-//Verificar se é a peça de cima
-function verficarPecaDeCima(event) {
-    const barraAtual = event.currentTarget
-    const primeiraPeca = barraAtual.lastChild
+    barraParaColocar = barra
+    return true
 
-    if (event.target === primeiraPeca) {
-        return true
-    }
-    return false
 }
 
 //Mover Pecas
@@ -116,11 +100,11 @@ function moverPeca(event) {
 
         if (barraParaColocar !== barraDaPeca) {
 
-            const pecasDaBarraColocar = barraParaColocar.getElementsByTagName('li')
-            let ultimaPecaBarraColocar = pecasDaBarraColocar[pecasDaBarraColocar.length - 1]
-            ultimaPecaBarraColocar === undefined ? ultimaPecaBarraColocar = { id: 'vazio' } : ultimaPecaBarraColocar
+            //Pega a ulta peca da barra que quer colocar a peca
+            let ultimaPecaBarraColocar = barraParaColocar.lastElementChild
 
-            if (parseInt(pecaEscolhida.id.slice(-1)) < parseInt(ultimaPecaBarraColocar.id.slice(-1)) || ultimaPecaBarraColocar.id === 'vazio') {
+            //Verifica se a barra esta vazio ou se a ultima peca é maior do que a que quer colocar 
+            if (ultimaPecaBarraColocar === null || parseInt(pecaEscolhida.id.slice(-1)) < parseInt(ultimaPecaBarraColocar.id.slice(-1)) || ultimaPecaBarraColocar.id === 'vazio') {
                 barraParaColocar.appendChild(pecaEscolhida)
                 contarMovimentos()
                 verificaVitoria(event.currentTarget)
@@ -228,7 +212,7 @@ function contarMovimentos() {
 }
 
 //Criar contador de movimentos na tela
-function criarContadorDeMovimentos(){
+function criarContadorDeMovimentos() {
     const div = criarElemento('div')
     const p = criarElemento('p')
 
@@ -240,7 +224,7 @@ function criarContadorDeMovimentos(){
 }
 
 //Inicia o jogo
-function iniciarJogo(){
+function iniciarJogo() {
     resetarVariaveisGlobais()
     criarContadorDeMovimentos()
     iniciarTorre(numPecas)
@@ -263,8 +247,8 @@ function alertaVitoria() {
     divVitoria.appendChild(alertaVitoria)
     alertaVitoria.appendChild(alertaTexto)
 
-    setTimeout(() => {removerAlertaVitoria()}, 2000)
-}   
+    setTimeout(() => { removerAlertaVitoria() }, 2000)
+}
 
 function removerAlertaVitoria() {
     document.getElementById('divVitoria').remove()

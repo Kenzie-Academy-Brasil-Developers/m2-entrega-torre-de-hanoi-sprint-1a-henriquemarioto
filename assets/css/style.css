@@ -56,17 +56,18 @@ body {
     width: 7px;
     height: 200px;
     border-radius: 5px;
-    background-color: #444;
     box-sizing: border-box;
     display: flex;
     flex-direction: column-reverse;
     justify-content: flex-start;
     align-items: center;
     cursor: pointer;
+    background-color: #444;
 }
 
 #peca1, #peca2, #peca3, #peca4, #peca5{
     border: 2px solid rgba(0,0,0,0.1);
+
 }
 
 #peca1 {
@@ -75,6 +76,13 @@ body {
     background-color: #FF9696;
     border-radius: var(--border-radius);
     box-sizing: border-box;
+}
+
+.peca-selecionada{
+    animation-name: animacaoSubirEDescer;
+    animation-duration: 0.16s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 #peca2 {
@@ -173,4 +181,9 @@ body {
     color: #444;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+}
+
+@keyframes animacaoSubirEDescer{
+    from{margin-bottom: 0}
+    to{margin-bottom: 10px;}
 }
