@@ -262,6 +262,12 @@ function alertaVitoria() {
     corpo.appendChild(divVitoria)
     divVitoria.appendChild(alertaVitoria)
     alertaVitoria.appendChild(alertaTexto)
+
+    setTimeout(() => {removerAlertaVitoria()}, 2000)
+}   
+
+function removerAlertaVitoria() {
+    document.getElementById('divVitoria').remove()
 }
 
 
