@@ -149,15 +149,18 @@ body {
     border: 3px #cad655 solid;
     color: #cad655;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-
 }
-
 
 #botaoDificil:hover {
     border: 3px #ff9696 solid;
     color: #ff9696;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
 
+#botaoReset:hover {
+    border: 3px crimson solid;
+    color: crimson;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 #divVitoria {
