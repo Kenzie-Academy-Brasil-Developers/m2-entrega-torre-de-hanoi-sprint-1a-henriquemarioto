@@ -14,7 +14,7 @@ body {
     --peca-height: 20px;
 }
 
-#container{
+#container {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -78,20 +78,43 @@ body {
     border-radius: var(--border-radius);
 }
 
-#peca1:hover, #peca2:hover, #peca3:hover, #peca4:hover, #peca5:hover{
+#peca1:hover,
+#peca2:hover,
+#peca3:hover,
+#peca4:hover,
+#peca5:hover {
     cursor: pointer;
 }
 
-#divBotoes{
-    
-    
+#divBotoes {}
+
+#botaoReset,
+#botaoFacil,
+#botaoMedio,
+#botaoDificil {
+    border-style: none;
+    border: none;
+    color: rgb(75, 75, 75);
+    font-weight: bolder;
+    margin: 0 5px 0 5px;
+    width: 90px;
+    height: 40px;
+    border-radius: 7px;
+    border: 2px rgb(75, 75, 75) solid;
+    box-sizing: border-box;
+    transition: 0.2s;
 }
 
-#botaoReset{
+#botaoReset:hover,
+#botaoFacil:hover,
+#botaoMedio:hover,
+#botaoDificil:hover {
+    border: 3px crimson solid;
+    color: crimson;
 
 }
 
-#divVitoria{
+#divVitoria {
     background-color: rgb(0, 0, 0, 0.5);
     width: 100vw;
     height: 100vh;
@@ -102,19 +125,18 @@ body {
 }
 
 #alertaVitoria {
-    background-color: chocolate;
-    border: 4px darkgreen solid;
+    background-color: #ebebeb;
+    border-left: 10px solid #444;
     width: 300px;
     height: 150px;
-    border-radius: 5px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
-#alertaTexto{
-    color:darkmagenta;
+#alertaTexto {
+    color: #444;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
