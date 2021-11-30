@@ -1,4 +1,6 @@
 body {
+    font-family: Arial;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,7 +8,8 @@ body {
 
     width: 100vw;
     height: 100vh;
-    background-color: #ddd;
+    background-color: #E6E8EA;
+    color: #333;
 }
 
 :root {
@@ -14,7 +17,32 @@ body {
     --peca-height: 20px;
 }
 
-#container{
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 300px;
+    background-color: #F3F3F5;
+    border-radius: 10px;
+
+    box-shadow: 0px 0px 9px 6px rgba(0,0,0,0.08);
+}
+
+#contador{
+    padding: 20px;
+}
+
+#botaoReset{
+    box-sizing: border-box;
+    border: 2px solid #999;
+    border-radius: 10px;;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.container-jogo{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -28,8 +56,7 @@ body {
     width: 7px;
     height: 200px;
     border-radius: 5px;
-    background-color: black;
-    border: 3px black solid;
+    background-color: #444;
     box-sizing: border-box;
     display: flex;
     flex-direction: column-reverse;
@@ -41,40 +68,35 @@ body {
 #peca1 {
     width: 23px;
     height: var(--peca-height);
-    background-color: #4576b5;
-    border: 2px black solid;
+    background-color: #f94144;
     border-radius: var(--border-radius);
 }
 
 #peca2 {
     width: 35px;
     height: var(--peca-height);
-    background-color: #755998;
-    border: 2px black solid;
+    background-color: #f3722c;
     border-radius: var(--border-radius);
 }
 
 #peca3 {
     width: 48px;
     height: var(--peca-height);
-    background-color: #91b24f;
-    border: 2px black solid;
+    background-color: #f8961e;
     border-radius: var(--border-radius);
 }
 
 #peca4 {
     width: 57px;
     height: var(--peca-height);
-    background-color: #b84644;
-    border: 2px black solid;
+    background-color: #f9c74f;
     border-radius: var(--border-radius);
 }
 
 #peca5 {
     width: 66px;
     height: var(--peca-height);
-    background-color: rgb(197, 120, 208);
-    border: 2px black solid;
+    background-color: #90be6d;
     border-radius: var(--border-radius);
 }
 
