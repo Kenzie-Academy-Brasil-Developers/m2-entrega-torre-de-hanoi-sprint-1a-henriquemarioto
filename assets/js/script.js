@@ -149,7 +149,7 @@ function verificaVitoria(barra) {
                     return false
                 }
             }
-            console.log('vitoria')
+            alertaVitoria()
         }
     }
 }
@@ -247,6 +247,22 @@ function iniciarJogo(){
     document.getElementById('divBotoes').remove()
     criarBotaoReset()
 }
+
+function alertaVitoria() {
+    const corpo = document.getElementsByTagName('body')[0]
+    const divVitoria = criarElemento('div')
+    divVitoria.id = 'divVitoria'
+    const alertaVitoria = criarElemento('div')
+    alertaVitoria.id = 'alertaVitoria'
+    const alertaTexto = criarElemento('p')
+    alertaTexto.id = 'alertaTexto'
+    alertaTexto.innerText = 'Parabéns! \nVocê moveu todas as peças corretamente!'
+
+    corpo.appendChild(divVitoria)
+    divVitoria.appendChild(alertaVitoria)
+    alertaVitoria.appendChild(alertaTexto)
+}
+
 
 //Funcoes ativadas no carregamento da pagina
 cirarBotoesDificulade()
